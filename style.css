@@ -8,8 +8,8 @@
 /* ================= BODY ================= */
 body {
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #faf7f2;
-  color: #333;
+  background: #f5f3f1;
+  color: #060606;
   line-height: 1.7;
 }
 
@@ -18,9 +18,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+    color: #efe8e8;
   padding: 15px 20px;
-  background: #ffffff;
-  border-bottom: 1px solid #ddd;
+  background: #05105b;
+  border-bottom: 1px solid #050505;
 }
 
 .header-left h1 {
@@ -29,7 +30,7 @@ body {
 
 .subtitle {
   font-size: 14px;
-  color: #666;
+  color: #f9f6f6;
   font-style: italic;
 }
 
@@ -51,6 +52,22 @@ body {
 .search-box.active {
   max-height: 70px;
 }
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+
+  background: linear-gradient(
+    -45deg,
+    #4f4d56,
+    #0f0e0e,
+    #450fc1,
+    #13022f
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+
 
 .search-box input {
   width: 100%;
@@ -80,19 +97,22 @@ body {
 
 /* ================= SECTIONS ================= */
 section {
+  
   background: #ffffff;
   max-width: 900px;
   margin: 26px auto;
   padding: 26px;
   border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(32, 6, 64, 0.08);
 }
 
 h2 {
-  color: #2c3e50;
-  border-left: 5px solid #f1c40f;
+  color: #dee2e7;
+  border-left: 5px solid #3e0fc8;
   padding-left: 12px;
   margin-bottom: 14px;
+  background-color: #4808ec;
+  border-radius: 4px;
 }
 
 /* ================= CENTER IMAGE ================= */
