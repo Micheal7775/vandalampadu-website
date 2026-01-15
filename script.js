@@ -1,51 +1,77 @@
+/* SEARCH */
+function toggleSearch() {
+  const box = document.getElementById("searchBox");
+  if (!box) return;
+  box.classList.toggle("active");
+}
+
+/* MENU */
+function toggleMenu() {
+  const menu = document.getElementById("mobileMenu");
+  if (!menu) return;
+  menu.style.display =
+    (menu.style.display === "flex") ? "none" : "flex";
+}
+
+/* SLIDER */
 document.querySelectorAll(".slider").forEach(slider => {
 
-    const slides = slider.querySelector(".slides");
-    const images = slides.querySelectorAll("img");
-    const prevBtn = slider.querySelector(".prev");
-    const nextBtn = slider.querySelector(".next");
+  const slides = slider.querySelector(".slides");
 
-    let index = 0;
-    let startX = 0;
-    let isDragging = false;
+  // 👇 img + video both count
+  const items = slides.children;
 
-    function showSlide(i) {
-        index = (i + images.length) % images.length;
-        slides.style.transform = `translateX(-${index * 100}%)`;
-    }
+  const prev = slider.querySelector(".prev");
+  const next = slider.querySelector(".next");
 
-    /* BUTTONS */
-    prevBtn.addEventListener("click", () => showSlide(index - 1));
-    nextBtn.addEventListener("click", () => showSlide(index + 1));
+  let index = 0;
 
-    /* TOUCH */
-    slides.addEventListener("touchstart", e => {
-        startX = e.touches[0].clientX;
-    });
+  function show(i) {
+    index = (i + items.length) % items.length;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
 
-    slides.addEventListener("touchend", e => {
-        handleSwipe(startX, e.changedTouches[0].clientX);
-    });
-
-    /* MOUSE */
-    slides.addEventListener("mousedown", e => {
-        isDragging = true;
-        startX = e.clientX;
-    });
-
-    slides.addEventListener("mouseup", e => {
-        if (!isDragging) return;
-        isDragging = false;
-        handleSwipe(startX, e.clientX);
-    });
-
-    slides.addEventListener("mouseleave", () => {
-        isDragging = false;
-    });
-
-    function handleSwipe(start, end) {
-        const diff = start - end;
-        if (diff > 50) showSlide(index + 1);
-        else if (diff < -50) showSlide(index - 1);
-    }
+  prev.onclick = () => show(index - 1);
+  next.onclick = () => show(index + 1);
 });
+
+function openModal(type) {
+
+  const overlay = document.getElementById("legalOverlay");
+  const title = document.getElementById("modalTitle");
+  const body = document.getElementById("modalBody");
+
+  const content = {
+    terms: {
+      title: "Terms of Use",
+      text: "This website is for informational purposes only. Content may not be reused without permission."
+    },
+    privacy: {
+      title: "Privacy Notice",
+      text: "No personal data is collected unless voluntarily provided by the user."
+    },
+    cookies: {
+      title: "Cookie Preferences",
+      text: "Cookies are used only to improve user experience."
+    },
+    language: {
+      title: "Country & Language Options",
+      text: "Currently available in English. Tamil language support is planned."
+    },
+    accessibility: {
+      title: "Accessibility Support",
+      text: "This website is designed to be accessible to all users."
+    }
+  };
+
+  title.textContent = content[type].title;
+  body.textContent = content[type].text;
+
+  overlay.style.display = "flex";
+  document.body.style.overflow = "hidden"; // stop background scroll
+}
+
+function closeModal() {
+  document.getElementById("legalOverlay").style.display = "none";
+  document.body.style.overflow = "auto"; // enable scroll back
+}
