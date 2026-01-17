@@ -75,3 +75,20 @@ function closeModal() {
   document.getElementById("legalOverlay").style.display = "none";
   document.body.style.overflow = "auto"; // enable scroll back
 }
+
+  const btn = document.getElementById("backToTop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {   // 200px keela pona show
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
